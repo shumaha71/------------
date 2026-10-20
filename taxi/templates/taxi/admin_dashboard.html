@@ -1,0 +1,30 @@
+{% extends "taxi/base.html" %}
+
+{% block title %}Кабинет администратора — Яндекс Такси{% endblock %}
+
+{% block content %}
+    <h2>ЛК администратора</h2>
+
+    <p>Здравствуйте, {{ user.username }}!</p>
+
+    <div class="stats-grid">
+        <section class="stat-card">
+            <h3>Всего пользователей</h3>
+            <p class="stat-value">{{ user_count }}</p>
+        </section>
+
+        <section class="stat-card">
+            <h3>Профилей пассажиров</h3>
+            <p class="stat-value">{{ passenger_count }}</p>
+        </section>
+
+        <section class="stat-card">
+            <h3>Профилей водителей</h3>
+            <p class="stat-value">{{ driver_count }}</p>
+        </section>
+    </div>
+
+    <a href="{% url 'admin:index' %}" class="button-link">
+        Управление пользователями и профилями
+    </a>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "taxi/base.html" %}
+
+{% block title %}Вход — Яндекс Такси{% endblock %}
+
+{% block content %}
+    <section class="login-card">
+        <h2>Вход в систему</h2>
+        <p>Введите логин и пароль.</p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <p class="form-error" role="alert">
+                    Не удалось войти. Проверьте логин и пароль.
+                </p>
+            {% endif %}
+
+            <div class="form-field">
+                <label for="id_username">Логин</label>
+                <input
+                    type="text"
+                    name="username"
+                    id="id_username"
+                    autocomplete="username"
+                    maxlength="150"
+                    required
+                >
+            </div>
+
+            <div class="form-field">
+                <label for="id_password">Пароль</label>
+                <input
+                    type="password"
+                    name="password"
+                    id="id_password"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <button type="submit">Войти</button>
+        </form>
+    </section>
+{% endblock %}

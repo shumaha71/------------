@@ -1,0 +1,22 @@
+{% extends "taxi/base.html" %}
+
+{% block title %}Главная — Яндекс Такси{% endblock %}
+
+{% block content %}
+    <h2>✨💅Карета будет подана.✨💅</h2>
+
+    <p>
+        Заказывайте поездки, управляйте работой водителей
+        и следите за результатами.
+    </p>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'dashboard' %}" class="button-link">
+            Перейти в Личный кабинет
+        </a>
+    {% else %}
+        <a href="{% url 'login' %}" class="button-link">
+            Вход в систему
+        </a>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Яндекс Такси{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'taxi/css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="site-header">
+        <div>
+            <h1>Яндекс Такси</h1>
+            <p>Шумахер рекомендует</p>
+        </div>
+
+        <div class="user-menu">
+            {% if user.is_authenticated %}
+                <a href="{% url 'dashboard' %}" class="nav-link">
+                    Личный кабинет
+                </a>
+
+                <span>
+                    Вы вошли как <strong>{{ user.username }}</strong>
+                </span>
+
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Выйти</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="button-link">
+                    Войти
+                </a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>Курсовой проект. Поездки и платежи бесплатновые, мы не умеем щетать.</p>
+    </footer>
+</body>
+</html>

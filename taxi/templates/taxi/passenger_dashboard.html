@@ -1,0 +1,43 @@
+{% extends "taxi/base.html" %}
+
+{% block title %}Кабинет пассажира — Яндекс Такси{% endblock %}
+
+{% block content %}
+    <h2>Личный кабинет пассажира</h2>
+
+    <p>Здравствуйте, {{ user.username }}! </p>
+        <p>Помните, счастье можно найти даже в тёмные времена, если не забывать обращаться к водителю на Вы.
+    </p>
+
+    <section>
+        <h3></h3>
+        
+        <h3>Доступные тарифы</h3>
+
+        <p>
+
+            Стоимость поездки складывается из подачи автомобиля
+            и стоимости расстояния.
+        </p>
+
+        <div class="tariff-grid">
+            {% for tariff in tariffs %}
+                <article class="tariff-card">
+                    <h3>{{ tariff.name }}</h3>
+
+                    <p>
+                        Подача:
+                        <strong>{{ tariff.base_price|floatformat:2 }} ₽</strong>
+                    </p>
+
+                    <p>
+                        За километр:
+                        <strong>{{ tariff.price_per_km|floatformat:2 }} ₽</strong>
+                    </p>
+                </article>
+            {% empty %}
+                <p>Пока нет доступных тарифов.</p>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
