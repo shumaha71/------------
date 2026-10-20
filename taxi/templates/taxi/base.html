@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}Яндекс Такси{% endblock %}</title>
+    <title>{% block title %} Яндекс Такси {% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'taxi/css/style.css' %}">
     {% block extra_css %}{% endblock %}
@@ -47,5 +47,7 @@
     <footer>
         <p>Курсовой проект. Поездки и платежи бесплатновые, мы не умеем щетать.</p>
     </footer>
+    
+    {% block scripts %}{% endblock %}
 </body>
 </html>

@@ -1,6 +1,14 @@
 {% extends "taxi/base.html" %}
+{% load static %}
 
-{% block title %}Кабинет пассажира — Яндекс Такси{% endblock %}
+{% block title %} Кабинет пассажира — Яндекс Такси {% endblock %}
+
+{% block extra_css %}
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+{% endblock %}
 
 {% block content %}
     <h2>Личный кабинет пассажира</h2>
@@ -11,7 +19,42 @@
 
     <section>
         <h3></h3>
-        
+        <section class="map-section">
+            <h3>Ну и куда мы?</h3>
+
+            <form id="route-form" class="route-form">
+                <div class="form-field">
+                    <label for="pickup-address">Откуда надо?:</label>
+
+                    <input
+                        type="text"
+                        id="pickup-address"
+                        placeholder="Город, улица, дом"
+                        maxlength="200"
+                        required
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="destination-address">Куда надо?</label>
+
+                    <input
+                        type="text"
+                        id="destination-address"
+                        name="destination_address"
+                        placeholder="Город, улица, дом"
+                        maxlength="200"
+                        required
+                    >
+                </div>
+
+                <button type="submit">Найти адреса</button>
+
+            </form>
+
+            <p id="route-message" role="status"></p>
+            <div id="map"></div>
+        </section>
         <h3>Доступные тарифы</h3>
 
         <p>
@@ -40,4 +83,8 @@
             {% endfor %}
         </div>
     </section>
+{% endblock %}
+{% block scripts %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{% static 'taxi/js/map.js' %}"></script>
 {% endblock %}
